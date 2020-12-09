@@ -1,0 +1,131 @@
+<div>
+  <div>
+    <h1>
+      Assignment #<%= @the_assignment.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/assignments">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_assignment/<%= @the_assignment.id %>">
+          Delete assignment
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Assignment type
+      </dt>
+      <dd>
+        <%= @the_assignment.assignment_type_id %>
+      </dd>
+
+      <dt>
+        Due
+      </dt>
+      <dd>
+        <%= @the_assignment.due %>
+      </dd>
+
+      <dt>
+        Course
+      </dt>
+      <dd>
+        <%= @the_assignment.course_id %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_assignment.description %>
+      </dd>
+
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_assignment.name %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_assignment.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_assignment.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit assignment
+    </h2>
+
+    <form action="/modify_assignment/<%= @the_assignment.id %>"  method="post" >
+      <div>
+        <label for="assignment_type_id_box">
+          Assignment type
+        </label>
+
+        <input type="text" id="assignment_type_id_box" name="query_assignment_type_id" value="<%= @the_assignment.assignment_type_id %>">
+      </div>
+
+      <div>
+        <label for="due_box">
+          Due
+        </label>
+
+        <input type="date" id="due_box" name="query_due" value="<%= @the_assignment.due %>">
+      </div>
+
+      <div>
+        <label for="course_id_box">
+          Course
+        </label>
+
+        <input type="text" id="course_id_box" name="query_course_id" value="<%= @the_assignment.course_id %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <textarea id="description_box" name="query_description"><%= @the_assignment.description %></textarea>
+      </div>
+
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_assignment.name %>">
+      </div>
+
+      <button>
+        Update assignment
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
