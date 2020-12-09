@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Course #<%= @the_course.id %> details
+      <%= @the_course.name %> details
     </h1>
 
     <div>
@@ -38,20 +38,6 @@
       </dt>
       <dd>
         <%= @the_course.prof_email %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_course.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_course.updated_at) %> ago
       </dd>
     </dl>
   </div>

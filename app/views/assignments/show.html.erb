@@ -19,28 +19,20 @@
     </div>
 
     <dl>
+        <dt>
+        Course
+      </dt>
+      <dd>
+        <%= @the_assignment.course.name %>
+      </dd>
+      
       <dt>
         Assignment type
       </dt>
       <dd>
-        <%= @the_assignment.assignment_type_id %>
+        <%= @the_assignment.assignment_type.assignment_type %>
       </dd>
-
-      <dt>
-        Due
-      </dt>
-      <dd>
-        <%= @the_assignment.due %>
-      </dd>
-
-      <dt>
-        Course
-      </dt>
-      <dd>
-        <%= @the_assignment.course_id %>
-      </dd>
-
-      <dt>
+ <dt>
         Description
       </dt>
       <dd>
@@ -55,18 +47,15 @@
       </dd>
 
       <dt>
-        Created at
+        Due
       </dt>
       <dd>
-        <%= time_ago_in_words(@the_assignment.created_at) %> ago
+        <%= @the_assignment.due %>
       </dd>
 
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_assignment.updated_at) %> ago
-      </dd>
+    
+
+     
     </dl>
   </div>
 </div>
@@ -79,47 +68,60 @@
     <h2>
       Edit assignment
     </h2>
+</div>
+    <div>
+  <form action="/insert_assignment" method="post">
+     <label for="query_course_id">Course</label>
+     <select name="query_course_id" id="query_course_id">
+  <%= @current_user.courses.each do |something|%>
+ 
+  <option value=<%=something.id%>><%=something.name%></option>
 
-    <form action="/modify_assignment/<%= @the_assignment.id %>"  method="post" >
-      <div>
-        <label for="assignment_type_id_box">
-          Assignment type
-        </label>
+ <%end%>
+</select>
 
-        <input type="text" id="assignment_type_id_box" name="query_assignment_type_id" value="<%= @the_assignment.assignment_type_id %>">
-      </div>
-
-      <div>
-        <label for="due_box">
-          Due
-        </label>
-
-        <input type="date" id="due_box" name="query_due" value="<%= @the_assignment.due %>">
-      </div>
-
-      <div>
-        <label for="course_id_box">
-          Course
-        </label>
-
-        <input type="text" id="course_id_box" name="query_course_id" value="<%= @the_assignment.course_id %>">
-      </div>
-
-      <div>
-        <label for="description_box">
-          Description
-        </label>
-
-        <textarea id="description_box" name="query_description"><%= @the_assignment.description %></textarea>
-      </div>
-
-      <div>
+</div>
+<div>
         <label for="name_box">
           Name
         </label>
 
         <input type="text" id="name_box" name="query_name" value="<%= @the_assignment.name %>">
-      </div>
+</div>
+    <div>
+    <form action="/modify_assignment/<%= @the_assignment.id %>"  method="post" >
+
+        <label for="assignment_type_box">
+          Assignment type
+        </label>
+
+<select name="query_assignment_type_id" id="query_assignment_type_id">
+  <%= AssignmentType.all.each do |something|%>
+ 
+  <option value=<%=something.id%>><%=something.assignment_type%></option>
+ 
+ 
+ 
+ <%end%>
+</select>      
+</div>
+
+<div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <textarea id="description_box" name="query_description"><%= @the_assignment.description %></textarea>
+</div>
+
+
+<div>
+        <label for="due_box">
+          Due
+        </label>
+
+        <input type="date" id="due_box" name="query_due" value="<%= @the_assignment.due %>">
+</div>
 
       <button>
         Update assignment
