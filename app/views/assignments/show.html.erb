@@ -74,9 +74,11 @@
      <label for="query_course_id">Course</label>
      <select name="query_course_id" id="query_course_id">
   <%= @current_user.courses.each do |something|%>
- 
+ <% if something.id==@the_assignment.course.id %>
+  <option selected value=<%=something.id%>><%=something.name%></option>
+  <% else %>
   <option value=<%=something.id%>><%=something.name%></option>
-
+ <%end%>
  <%end%>
 </select>
 
@@ -97,8 +99,11 @@
 
 <select name="query_assignment_type_id" id="query_assignment_type_id">
   <%= AssignmentType.all.each do |something|%>
- 
+  <% if something.id==@the_assignment.assignment_type.id %>
+  <option selected value=<%=something.id%>><%=something.assignment_type%></option>
+  <% else %>
   <option value=<%=something.id%>><%=something.assignment_type%></option>
+ <%end%>
  
  
  
