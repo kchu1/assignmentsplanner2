@@ -55,9 +55,6 @@
 
       <% @list_of_assignment_types.each do |an_assignment_type| %>
       <tr>
-        <td>
-          <%= an_assignment_type.id %>
-        </td>
 
         <td>
           <%= an_assignment_type.assignment_type %>
@@ -68,12 +65,6 @@
         </td>
         <td>
           <%= time_ago_in_words(an_assignment_type.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/assignment_types/<%= an_assignment_type.id %>">
-            Show details
-          </a>
         </td>
       </tr>
       <% end %>
